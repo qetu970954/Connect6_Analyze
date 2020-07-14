@@ -4,6 +4,7 @@ import pathlib
 import json
 import argparse
 
+
 def yaml2json(zipped_yaml):
     os.system(f"gunzip {zipped_yaml}")
     unzipped_yaml_path = pathlib.Path(f"{zipped_yaml.parent}/{zipped_yaml.stem}")
