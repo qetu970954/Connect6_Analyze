@@ -13,8 +13,8 @@ for a_json_archive_path in tqdm(sorted(pathlib.Path("../TEST/").glob("*.json.gz"
     # find length of every episode
     with a_json_path.open() as f:
         data = json.load(f)
-        for game in data["BatchOfPositions"]:
-            length_for_each_episode.append(len(game))
+        for episode in data["BatchOfPositions"]:
+            length_for_each_episode.append(len(episode))
 
     os.system(f"gzip {a_json_path}")
 
