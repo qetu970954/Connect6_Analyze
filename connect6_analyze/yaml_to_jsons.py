@@ -9,12 +9,15 @@ def yaml2json(zipped_yaml):
     os.system(f"gunzip {zipped_yaml}")
     unzipped_yaml_path = pathlib.Path(f"{zipped_yaml.parent}/{zipped_yaml.stem}")
     json_out_path = pathlib.Path(unzipped_yaml_path.as_posix()[:-3] + "json")
+    json_out_path_gz = pathlib.Path(unzipped_yaml_path.as_posix()[:-3] + "json.gz")
 
-    with unzipped_yaml_path.open() as yaml_in:
-        data = yaml.safe_load(yaml_in)
-        json.dump(data, json_out_path.open("w"))
+    if not json_out_path_gz.exists():
+        with unzipped_yaml_path.open() as yaml_in:
+            data = yaml.safe_load(yaml_in)
+            json.dump(data, json_out_path.open("w"))
 
     os.system(f"gzip {unzipped_yaml_path}")
+
     return json_out_path
 
 
