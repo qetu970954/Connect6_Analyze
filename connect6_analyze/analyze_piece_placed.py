@@ -33,10 +33,6 @@ for a_json_archive_path in tqdm(sorted(pathlib.Path("../RECORD_LOAD_DIR/").glob(
                 visit_count_for_each_grid[x, y] += 1
             game_count += 1
 
-    if game_count % 500000 == 0:
-        fig = create_figure()
-        fig.write_html(f"visit_map_when_games_reach_{game_count}.html")
-
 fig = create_figure()
 fig.update_layout(title_text=f"There're {game_count} games been calculated!")
 fig.write_html(f"visit_map_final.html")
